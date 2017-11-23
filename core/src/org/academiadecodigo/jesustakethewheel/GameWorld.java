@@ -23,7 +23,7 @@ public class GameWorld {
     public GameWorld() {
 
         rope = new Rope(playerOne, playerTwo);
-        world = new World(new Vector2(0f, -98f), true);
+        world = new World(new Vector2(0f, -170f), true);
         playerOne = new Player(world);
         playerTwo = new Player(world);
 

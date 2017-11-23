@@ -1,7 +1,8 @@
 package org.academiadecodigo.jesustakethewheel;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.physics.box2d.World;
 
 /**
  * Created by codecadet on 23/11/2017.
@@ -16,6 +17,9 @@ public class GameScreen implements Screen {
 
         gameWorld = new GameWorld();
         renderer = new GameRenderer(gameWorld);
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(gameWorld.getPlayerOne().getPlayerController());
+        Gdx.input.setInputProcessor(inputMultiplexer);
 
     }
 
