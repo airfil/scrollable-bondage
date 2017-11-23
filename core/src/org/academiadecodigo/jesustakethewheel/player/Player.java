@@ -57,7 +57,7 @@ public class Player {
     public void jump() {
 
         body.applyLinearImpulse(0, 2000, body.getWorldCenter().x, body.getWorldCenter().y, true);
-        if(body.getLinearVelocity().x > 50) {
+        if (body.getLinearVelocity().x > 50) {
 
             body.applyLinearImpulse(1000, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
@@ -84,7 +84,7 @@ public class Player {
             moveRight();
         }
 
-        if (isMovingLeft  && Math.abs(body.getLinearVelocity().x) < MAX_VELOCITY) {
+        if (isMovingLeft && Math.abs(body.getLinearVelocity().x) < MAX_VELOCITY) {
             moveLeft();
         }
 
