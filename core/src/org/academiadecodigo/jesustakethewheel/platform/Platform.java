@@ -8,14 +8,41 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Platform {
 
+    private final float HEIGHT = 30;
+
     private Sprite sprite;
     private Vector2 position;
+    private float widht ;
 
 
-    public void update(){
+    public Platform(float widht , Vector2 position , Sprite sprite){
+       this.sprite = sprite;
+       this.position = position;
+       this.widht = widht;
+
+       init();
+    }
+
+    private void init(){
+
+        sprite.setPosition(position.x,position.y);
+        sprite.setSize(widht,HEIGHT);
 
     }
 
 
+    public void update(){
 
+
+
+    }
+
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
 }

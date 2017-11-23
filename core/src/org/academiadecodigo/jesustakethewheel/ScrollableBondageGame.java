@@ -12,9 +12,12 @@ public class ScrollableBondageGame extends Game {
 
 	private GameScreen screen;
 
+	public ScrollableBondageGame(){
+
+	}
+	
 	@Override
 	public void create () {
-
 		screen = new GameScreen();
 		setScreen(screen);
 	}
@@ -23,7 +26,6 @@ public class ScrollableBondageGame extends Game {
 	public void render () {
 
 	    screen.render(Gdx.graphics.getDeltaTime());
-
 	}
 	
 	@Override
