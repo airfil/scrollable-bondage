@@ -39,8 +39,7 @@ public class GameWorld {
 
     public void update() {
         if(platforms.size() < 10){
-            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size()));
-            System.out.println(platforms.size() + " SIZE");
+            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
         }
 
         playerOne.update();

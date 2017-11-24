@@ -8,9 +8,10 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * Created by codecadet on 23/11/2017.
  */
-public class Platform {
+public class Platform{
 
-    private final float HEIGHT = 30;
+    //private final float HEIGHT = 30;
+    //private final float WIDHT = 50;
 
     private Sprite sprite;
     private World world;
@@ -23,10 +24,11 @@ public class Platform {
         sprite.setPosition(x, y);
 
         init();
+
+
     }
 
     private void init() {
-
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
