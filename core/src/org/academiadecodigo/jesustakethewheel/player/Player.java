@@ -33,7 +33,7 @@ public class Player {
 
         playerController = new PlayerController(this);
 
-        sprite = new Sprite(new Texture("player 2.png"));
+        sprite = new Sprite(new Texture("player.png"));
         sprite.setPosition(300, 300);
 
         BodyDef bodyDef = new BodyDef();
