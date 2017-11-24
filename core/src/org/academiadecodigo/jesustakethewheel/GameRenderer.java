@@ -34,10 +34,12 @@ public class GameRenderer {
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
         Sprite playerOneSprite = gameWorld.getPlayerOne().getSprite();
+        Sprite playerTwoSprite = gameWorld.getPlayerTwo().getSprite();
 
         spriteBatch.begin();
 
         spriteBatch.draw(playerOneSprite, playerOneSprite.getX(), playerOneSprite.getY());
+        spriteBatch.draw(playerTwoSprite, playerTwoSprite.getX(), playerTwoSprite.getY());
 
         spriteBatch.end();
 
