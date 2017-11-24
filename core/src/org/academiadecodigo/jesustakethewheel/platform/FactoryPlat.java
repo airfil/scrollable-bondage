@@ -14,7 +14,7 @@ public class FactoryPlat {
 
         if (size == 0) {
 
-            newPlatform = new Platform(world, 190, 30);
+            newPlatform = new Platform(world, 190, 160);
 
             return newPlatform;
         }

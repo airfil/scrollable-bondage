@@ -32,8 +32,8 @@ public class GameRenderer {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        Texture texture = new Texture(Gdx.files.internal("building_background.png"));
-        texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+            Texture texture = new Texture(Gdx.files.internal("building_background.png"));
+            texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
         Sprite playerOneSprite = gameWorld.getPlayerOne().getSprite();
         Sprite playerTwoSprite = gameWorld.getPlayerTwo().getSprite();
@@ -55,12 +55,20 @@ public class GameRenderer {
         spriteBatch.draw(playerTwoSprite, playerTwoSprite.getX(), playerTwoSprite.getY());
         spriteBatch.end();
 
+        if(gameWorld.getStages() == GameWorld.Stages.START) {
+            spriteBatch.begin();
+            gameWorld.getFont().draw(spriteBatch, "Press Start!", 28, 400);
+            spriteBatch.end();
+        }
 
-        spriteBatch.begin();
-        gameWorld.getFont().draw(spriteBatch, "Press Start!", 28, 400);
-        spriteBatch.end();
+        if(gameWorld.getStages() == GameWorld.Stages.END){
+            spriteBatch.begin();
+            gameWorld.getFont().draw(spriteBatch, "Happy Game",50  , 400);
+            gameWorld.getFont().draw(spriteBatch, "   Over!  ",50  , 350);
+            spriteBatch.end();
+        }
 
-        gameWorld.getWorld().step(1 / 60f, 6, 6);
+        gameWorld.getWorld().step(1 / 60f, 6, 2);
     }
 
 
