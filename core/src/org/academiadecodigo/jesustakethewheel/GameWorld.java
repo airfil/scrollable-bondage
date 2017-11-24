@@ -3,6 +3,7 @@ package org.academiadecodigo.jesustakethewheel;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import org.academiadecodigo.jesustakethewheel.platform.FactoryPlat;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 import org.academiadecodigo.jesustakethewheel.platform.PlatformFactory;
 import org.academiadecodigo.jesustakethewheel.player.Player;
@@ -30,7 +31,7 @@ public class GameWorld {
         world = new World(new Vector2(0f, -170f), true);
         playerOne = new Player(world);
         playerTwo = new Player(world);
-        platforms = new LinkedList<Platform>();
+        platforms = new LinkedList<>();
     }
 
     private enum Stages {
@@ -40,7 +41,8 @@ public class GameWorld {
 
     public void update() {
         if(platforms.size() < 10){
-            platforms.addAll(PlatformFactory.platformFactory(platforms));
+            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size()));
+            System.out.println(platforms.size() + " SIZE");
         }
         playerOne.update();
     }
