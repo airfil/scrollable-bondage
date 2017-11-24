@@ -6,8 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -44,12 +43,13 @@ public class GameWorld {
     private boolean isSongPlaying;
     private int score;
 
+
     public GameWorld() {
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("PressStart2P.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 35;
-        parameter.color = Color.PINK;
+        parameter.color = Color.YELLOW;
         font = generator.generateFont(parameter);
         Texture entranceTexture = new Texture(Gdx.files.internal("entry.png"));
         entrance = new Sprite(entranceTexture);
@@ -82,8 +82,10 @@ public class GameWorld {
             }
 
 
-            while(platforms.size() < 10) {
-                platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world, coinList));
+
+            while(platforms.size() < 50) {
+                platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world,coinList));
+
             }
         }
 
@@ -138,9 +140,7 @@ public class GameWorld {
 
         }
 
-        if (input.isKeyPressed(Input.Keys.ENTER)) {
-            stage = Stages.PLAY;
-        }
+
 
         if (platforms.size() < 10) {
             platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world, coinList));
@@ -183,5 +183,9 @@ public class GameWorld {
 
     public List<Coin> getCoinList() {
         return coinList;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

@@ -5,8 +5,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 
 import java.util.Timer;
@@ -20,8 +19,15 @@ public class GameRenderer {
     private GameWorld gameWorld;
     private SpriteBatch spriteBatch;
     private OrthographicCamera camera;
+    private Sprite sprite;
+    private Sprite endSprite;
+
 
     public GameRenderer(GameWorld gameWorld) {
+
+        sprite = new Sprite(new Texture("menu.png"));
+        endSprite = new Sprite(new Texture("final_with_coins.png"));
+
 
         spriteBatch = new SpriteBatch();
         this.gameWorld = gameWorld;
@@ -67,14 +73,14 @@ public class GameRenderer {
 
         if(gameWorld.getStages() == GameWorld.Stages.START) {
             spriteBatch.begin();
-            gameWorld.getFont().draw(spriteBatch, "Press Start!", 28, 400);
+            sprite.draw(spriteBatch);
             spriteBatch.end();
         }
 
         if(gameWorld.getStages() == GameWorld.Stages.END){
             spriteBatch.begin();
-            gameWorld.getFont().draw(spriteBatch, "Happy Game",50  , 400);
-            gameWorld.getFont().draw(spriteBatch, "   Over!  ",50  , 350);
+            endSprite.draw(spriteBatch);
+            gameWorld.getFont().draw(spriteBatch,String.valueOf(gameWorld.getScore()) ,150,75);
             spriteBatch.end();
         }
 

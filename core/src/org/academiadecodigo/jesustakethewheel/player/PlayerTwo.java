@@ -1,7 +1,11 @@
 package org.academiadecodigo.jesustakethewheel.player;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
@@ -14,6 +18,9 @@ public class PlayerTwo {
     private Sprite sprite;
     private Body body;
     private PlayerControllerTwo playerControllerTwo;
+    private Animation<TextureRegion> fowardAnimation;
+    private TextureAtlas atlas;
+    private float time;
 
     private World world;
     private Fixture playerPhysicsFixture;
@@ -26,10 +33,10 @@ public class PlayerTwo {
         this.world = world;
 
         playerControllerTwo = new PlayerControllerTwo(this);
-
-        sprite = new Sprite(new Texture("player.png"));
+        sprite = new Sprite(new Texture("whitemove1.png"));
         sprite.setPosition(200, 200);
-
+        atlas =  new TextureAtlas("playerTwo.atlas");
+        fowardAnimation = new Animation<TextureRegion>(0.5f,atlas.getRegions());
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(sprite.getX(), sprite.getY());
@@ -50,6 +57,9 @@ public class PlayerTwo {
 
     public void jump() {
 
+        time += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(fowardAnimation.getKeyFrame(time/0.5f,true));
+
         if (isPlayerJumping()) {
             return;
         }
@@ -68,12 +78,14 @@ public class PlayerTwo {
     }
 
     public void moveRight() {
-
+        time += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(fowardAnimation.getKeyFrame(time/0.5f,true));
         body.applyForceToCenter(200f, 0, true);
     }
 
     public void moveLeft() {
-
+        time += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(fowardAnimation.getKeyFrame(time/0.5f,true));
         body.applyForceToCenter(-200f, 0, true);
     }
 
