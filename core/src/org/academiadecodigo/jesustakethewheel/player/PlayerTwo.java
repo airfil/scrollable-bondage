@@ -27,7 +27,7 @@ public class PlayerTwo {
 
         playerControllerTwo = new PlayerControllerTwo(this);
 
-        sprite = new Sprite(new Texture("player.png"));
+        sprite = new Sprite(new Texture("whitemove2.png"));
         sprite.setPosition(200, 200);
 
         BodyDef bodyDef = new BodyDef();

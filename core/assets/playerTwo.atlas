@@ -1,0 +1,27 @@
+
+playerTwo.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blackmove1
+  rotate: false
+  xy: 2, 2
+  size: 246, 364
+  orig: 246, 364
+  offset: 0, 0
+  index: -1
+blackmove2
+  rotate: false
+  xy: 250, 2
+  size: 246, 364
+  orig: 246, 364
+  offset: 0, 0
+  index: -1
+blackmove3
+  rotate: false
+  xy: 498, 2
+  size: 246, 364
+  orig: 246, 364
+  offset: 0, 0
+  index: -1

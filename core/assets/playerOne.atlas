@@ -1,0 +1,27 @@
+
+playerOne.png
+size: 2048,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+whitemove1
+  rotate: false
+  xy: 2, 2
+  size: 582, 270
+  orig: 582, 270
+  offset: 0, 0
+  index: -1
+whitemove2
+  rotate: false
+  xy: 586, 2
+  size: 582, 270
+  orig: 582, 270
+  offset: 0, 0
+  index: -1
+whitemove3
+  rotate: false
+  xy: 1170, 2
+  size: 582, 270
+  orig: 582, 270
+  offset: 0, 0
+  index: -1
