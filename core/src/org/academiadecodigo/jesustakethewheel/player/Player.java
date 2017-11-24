@@ -42,13 +42,14 @@ public class Player {
 
         body = world.createBody(bodyDef);
 
+
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 0.0f;
-        fixtureDef.friction = 0.5f;
+        fixtureDef.friction = 1.0f;
         fixtureDef.restitution = 0.1f;
 
         playerPhysicsFixture = body.createFixture(fixtureDef);
@@ -61,15 +62,15 @@ public class Player {
         }
 
 
-        body.applyLinearImpulse(0, 500, body.getWorldCenter().x, body.getWorldCenter().y, true);
+        body.applyLinearImpulse(0, 300, body.getWorldCenter().x, body.getWorldCenter().y, true);
 
         if (body.getLinearVelocity().x > 50) {
 
-            body.applyLinearImpulse(300, 150, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
+            body.applyLinearImpulse(300, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
         if (body.getLinearVelocity().x < -50) {
 
-            body.applyLinearImpulse(-300, 150, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
+            body.applyLinearImpulse(-300, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
     }
 
@@ -115,6 +116,6 @@ public class Player {
 
     private boolean isPlayerJumping() {
 
-        return body.getLinearVelocity().y > 5 || body.getLinearVelocity().y < -5;
+        return body.getLinearVelocity().y > 20 || body.getLinearVelocity().y < -20;
     }
 }

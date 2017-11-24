@@ -1,14 +1,16 @@
 package org.academiadecodigo.jesustakethewheel;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import javafx.stage.Stage;
 import org.academiadecodigo.jesustakethewheel.platform.FactoryPlat;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
@@ -33,9 +35,10 @@ public class GameWorld {
     private Sprite entrance;
     private Stages stage;
     private BitmapFont font;
-
+    private Sound song;
     private World world;
     private LinkedList<Platform> platforms;
+    private boolean isSongPlaying;
 
     public GameWorld() {
 
@@ -49,44 +52,52 @@ public class GameWorld {
         entrance.setPosition(0, 0);
         background = new Background();
         rope = new Rope(playerOne, playerTwo);
-        world = new World(new Vector2(0f, -98f), true);
+        world = new World(new Vector2(0f, -148f), true);
         playerOne = new Player(world);
         playerTwo = new Player(world);
         platforms = new LinkedList<Platform>();
         stage = Stages.START;
+        song = Gdx.audio.newSound(Gdx.files.internal("drake.wav"));
+
 
         platforms.add(new Platform(world, 100, 100));
     }
 
-    private enum Stages {
+    public enum Stages {
         START,
+        END,
         PLAY;
     }
 
 
     public void update() {
 
-        if(stage == Stages.START) {
+        if (stage == Stages.START) {
 
 
-            if(input.isKeyPressed(Input.Keys.ENTER)){
+            if (input.isKeyPressed(Input.Keys.ENTER)) {
                 stage = Stages.PLAY;
             }
 
 
-
-            if (platforms.size() < 1000) {
+            if (platforms.size() < 300) {
                 platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
             }
         }
 
-        if(stage == Stages.PLAY) {
+        if (stage == Stages.PLAY) {
+
+            if(!isSongPlaying) {
+                song.play();
+                isSongPlaying = true;
+            }
+
             Platform platform;
             ListIterator<Platform> listIterator = platforms.listIterator();
             while (listIterator.hasNext()) {
                 platform = listIterator.next();
                 platform.update();
-                if (platform.getSprite().getY() <= 10) {
+                if (platform.getSprite().getY() <= -200) {
                     world.destroyBody(platform.getBody());
                     listIterator.remove();
                     listIterator.add(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
@@ -103,7 +114,22 @@ public class GameWorld {
             }
 
             playerOne.update();
+
+            if (playerOne.getSprite().getY() < -10 || playerTwo.getSprite().getY() < -10) {
+                stage = Stages.END;
+            }
+
         }
+
+        if (input.isKeyPressed(Input.Keys.ENTER)) {
+            stage = Stages.PLAY;
+        }
+
+
+        if (platforms.size() < 300) {
+            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
+        }
+
     }
 
 
@@ -129,5 +155,9 @@ public class GameWorld {
 
     public BitmapFont getFont() {
         return font;
+    }
+
+    public Stages getStages(){
+        return stage;
     }
 }
