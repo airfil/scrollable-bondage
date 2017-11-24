@@ -5,8 +5,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 
 import java.util.Timer;
@@ -22,6 +21,7 @@ public class GameRenderer {
     private OrthographicCamera camera;
     private Sprite sprite;
     private Sprite endSprite;
+
 
     public GameRenderer(GameWorld gameWorld) {
 
@@ -80,7 +80,9 @@ public class GameRenderer {
         if(gameWorld.getStages() == GameWorld.Stages.END){
             spriteBatch.begin();
             endSprite.draw(spriteBatch);
-            gameWorld.getFont().draw(spriteBatch, "" + gameWorld.getScore() ,150,75);
+
+            gameWorld.getFont().draw(spriteBatch,String.valueOf(gameWorld.getScore()) ,150,75);
+
             spriteBatch.end();
         }
 

@@ -6,8 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -44,6 +43,7 @@ public class GameWorld {
     private boolean isSongPlaying;
     private int score;
 
+
     public GameWorld() {
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("PressStart2P.ttf"));
@@ -65,9 +65,6 @@ public class GameWorld {
         coinList = new LinkedList<>();
     }
 
-    public int getScore() {
-        return score;
-    }
 
     public enum Stages {
         START,
@@ -185,5 +182,9 @@ public class GameWorld {
 
     public List<Coin> getCoinList() {
         return coinList;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
