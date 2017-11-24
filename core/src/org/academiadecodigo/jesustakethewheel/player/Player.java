@@ -28,6 +28,7 @@ public class Player {
     private TextureAtlas atlas;
     private World world;
     private Fixture playerPhysicsFixture;
+    private float time;
 
     private boolean isMovingRight;
     private boolean isMovingLeft;
@@ -37,9 +38,11 @@ public class Player {
         this.world = world;
 
         playerController = new PlayerController(this);
-
+        atlas =  new TextureAtlas("playerOne.atlas");
+        fowardAnimation = new Animation<TextureRegion>(0.5f,atlas.getRegions());
         sprite = new Sprite(new Texture("player.png"));
         sprite.setPosition(200, 200);
+
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -61,6 +64,10 @@ public class Player {
     }
 
     public void jump() {
+
+        time += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(fowardAnimation.getKeyFrame(time/0.5f,true));
+
         if (isPlayerJumping()) {
             return;
         }
@@ -79,11 +86,14 @@ public class Player {
     }
 
     public void moveRight() {
+        time += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(fowardAnimation.getKeyFrame(time/0.5f,true));
         body.applyForceToCenter(200f, 0, true);
     }
 
     public void moveLeft() {
-
+        time += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(fowardAnimation.getKeyFrame(time/0.5f,true));
         body.applyForceToCenter(-200f, 0, true);
     }
 
