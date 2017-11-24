@@ -23,6 +23,8 @@ public class Platform{
         sprite = new Sprite(new Texture("platform.png"));
         sprite.setPosition(x, y);
 
+        System.out.println(sprite.getWidth());
+
         init();
 
 
