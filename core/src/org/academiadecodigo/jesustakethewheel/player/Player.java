@@ -34,7 +34,7 @@ public class Player {
         playerController = new PlayerController(this);
 
         sprite = new Sprite(new Texture("player.png"));
-        sprite.setPosition(300, 300);
+        sprite.setPosition(200, 200);
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -48,22 +48,28 @@ public class Player {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 0.0f;
-        fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0.6f;
+        fixtureDef.friction = 0.5f;
+        fixtureDef.restitution = 0.1f;
 
         playerPhysicsFixture = body.createFixture(fixtureDef);
     }
 
     public void jump() {
 
-        body.applyLinearImpulse(0, 2000, body.getWorldCenter().x, body.getWorldCenter().y, true);
+        if(isPlayerJumping()) {
+            return;
+        }
+
+
+        body.applyLinearImpulse(0, 380, body.getWorldCenter().x, body.getWorldCenter().y, true);
+
         if (body.getLinearVelocity().x > 50) {
 
-            body.applyLinearImpulse(1000, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
+            body.applyLinearImpulse(300, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
         if (body.getLinearVelocity().x < -50) {
 
-            body.applyLinearImpulse(-1000, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
+            body.applyLinearImpulse(-300, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
     }
 
@@ -89,7 +95,6 @@ public class Player {
         }
 
         sprite.setPosition(body.getPosition().x, body.getPosition().y);
-        //System.out.println("mass : " + body.getMass());
     }
 
     public Sprite getSprite() {
@@ -110,6 +115,6 @@ public class Player {
 
     private boolean isPlayerJumping() {
 
-        return body.getLinearVelocity().y > 50 || body.getLinearVelocity().y < -50;
+        return body.getLinearVelocity().y > 5 || body.getLinearVelocity().y < -5;
     }
 }
