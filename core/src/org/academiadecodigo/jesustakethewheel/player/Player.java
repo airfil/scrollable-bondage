@@ -61,15 +61,15 @@ public class Player {
         }
 
 
-        body.applyLinearImpulse(0, 380, body.getWorldCenter().x, body.getWorldCenter().y, true);
+        body.applyLinearImpulse(0, 500, body.getWorldCenter().x, body.getWorldCenter().y, true);
 
         if (body.getLinearVelocity().x > 50) {
 
-            body.applyLinearImpulse(300, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
+            body.applyLinearImpulse(300, 150, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
         if (body.getLinearVelocity().x < -50) {
 
-            body.applyLinearImpulse(-300, 0, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
+            body.applyLinearImpulse(-300, 150, body.getWorldCenter().x, body.getWorldCenter().y - 20, true);
         }
     }
 
