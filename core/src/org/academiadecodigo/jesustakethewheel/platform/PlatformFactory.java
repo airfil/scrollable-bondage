@@ -12,58 +12,107 @@ import java.util.List;
  * Created by codecadet on 23/11/2017.
  */
 public class PlatformFactory {
-
-    private final static int[] xPositions  = new int[]{0,150,300,450,600};
+/*
+    private final static int[] xPositions = new int[]{0, 150, 300, 450, 600};
 
     public static LinkedList<Platform> platformFactory(LinkedList<Platform> platformsList) {
 
 
-
-        LinkedList<Platform> platforms = new LinkedList<Platform>();
+        LinkedList<Platform> platforms = new LinkedList<>();
         int possibleX[] = new int[2];
-        //int levelPlatforms =(int)Math.ceil(Math.random() * 2);
+        int levelPlatforms =2; //(int) Math.ceil(Math.random() * 2);
+
 
         Texture rectangleTexture = new Texture(Gdx.files.internal("rectangle.png"));
         Sprite sprite = new Sprite(rectangleTexture);
-        int jumpingDistance = 100;
 
         /*int maxWidht = 100;
         int minWidht = 25;
         int range = (maxWidht - minWidht) + 1;
-        int randomWidht = (int)(Math.random() * range) + minWidht;*/
+        int randomWidht = (int)(Math.random() * range) + minWidht;
+
         int randomWidht = 50;
 
-        int randomXPosition = (int)Math.floor(Math.random() * (xPositions.length-1));
-        System.out.println("First: " + randomXPosition);
+        int randomXPosition;
         int randomYPosition = 90;
 
 
         if (platformsList.isEmpty()) {
-            platforms.add(new Platform(randomWidht, new Vector2(xPositions[randomXPosition], randomYPosition), sprite));
+            System.out.println("Oh caralho dos level platforms: " + levelPlatforms);
+
+            for (int i = 0; i < levelPlatforms; i++) {
+                System.out.println("Este i é : " + i);
+                if (i == 0) {
+                    randomXPosition = (int) Math.floor(Math.random() * (xPositions.length - 1));
+                    platforms.add(new Platform( sprite,new Vector2(xPositions[randomXPosition],
+                            randomYPosition)));
+                    continue;
+                }
+
+                possibleX = getPossiblePositions(platforms);
+                System.out.println(possibleX[0] +" " + possibleX[1]);
+                randomXPosition = (int) Math.floor(Math.random() * (possibleX.length - 1));
+                platforms.add(new Platform(sprite,new Vector2(possibleX[randomXPosition],
+                        randomYPosition)));
+
+            }
             return platforms;
         }
 
 
         Platform lastPlatform = platformsList.peekLast();
-        float lastPlatformY = lastPlatform.getPosition().y;
-        float lastPlatformX = lastPlatform.getPosition().x;
+        float lastPlatformY = lastPlatform.getSprite().getY();
         randomYPosition = (int) lastPlatformY + (90);
+
+        for (int i = 0; i < levelPlatforms; i++) {
+            if (i == 0) {
+                possibleX = getPossiblePositions(platformsList);
+                randomXPosition = (int) Math.floor(Math.random() * (possibleX.length));
+                platforms.add(new Platform( sprite, new Vector2(possibleX[randomXPosition],
+                        randomYPosition)));
+                continue;
+            }
+
+            possibleX = getPossiblePositions(platforms);
+            randomXPosition = (int) Math.floor(Math.random() * (possibleX.length));
+            platforms.add(new Platform( sprite, new Vector2(possibleX[randomXPosition],
+                    randomYPosition)));
+
+        }
+
+
+
+
+
+
+        return platforms;
+
+
+    }
+
+
+    private static int[] getPossiblePositions(LinkedList<Platform> platforms) {
+
+        Platform lastPlatform = platforms.peekLast();
+        float lastPlatformX = lastPlatform.getSprite().getX();
         int count = 0;
+        int[] possiblePositions = new int[2];
+
         for (int i : xPositions) {
 
-            if(i == lastPlatformX){
-                if(xPositions[0] == i) {
-                    possibleX[0] = xPositions[1];
-                    possibleX[1] = xPositions[1];
+            if (i == lastPlatformX) {
+                if (xPositions[0] == i) {
+                    possiblePositions[0] = xPositions[1];
+                    possiblePositions[1] = xPositions[1];
                     break;
                 }
-                if(i == xPositions[xPositions.length-1]) {
-                    possibleX[0] = xPositions[xPositions.length- 1];
-                    possibleX[1] = xPositions[xPositions.length - 1];
+                if (i == xPositions[xPositions.length - 1]) {
+                    possiblePositions[0] = xPositions[xPositions.length - 2];
+                    possiblePositions[1] = xPositions[xPositions.length - 2];
                     break;
                 }
-                possibleX[1] = xPositions[count + 1];
-                possibleX[0] = xPositions[count - 1];
+                possiblePositions[1] = xPositions[count + 1];
+                possiblePositions[0] = xPositions[count - 1];
                 break;
 
             }
@@ -71,15 +120,9 @@ public class PlatformFactory {
 
         }
 
-        randomXPosition = (int)Math.floor(Math.random() * 2);
 
-
-
-        platforms.add(new Platform(randomWidht, new Vector2(possibleX[randomXPosition], randomYPosition), sprite));
-        return platforms;
-
-
+        return possiblePositions;
     }
 
-
+*/
 }

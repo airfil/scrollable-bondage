@@ -89,7 +89,7 @@ public class Player {
         }
 
         sprite.setPosition(body.getPosition().x, body.getPosition().y);
-        System.out.println("mass : " + body.getMass());
+        //System.out.println("mass : " + body.getMass());
     }
 
     public Sprite getSprite() {

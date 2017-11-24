@@ -2,37 +2,37 @@ package org.academiadecodigo.jesustakethewheel.platform;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import org.academiadecodigo.jesustakethewheel.Scrollable;
 
 /**
  * Created by codecadet on 23/11/2017.
  */
-public class Platform {
+public class Platform{
 
-    private final float HEIGHT = 30;
+    //private final float HEIGHT = 30;
+    //private final float WIDHT = 50;
 
     private Sprite sprite;
-    private Vector2 position;
-    private float widht ;
+    private float widht;
 
 
-    public Platform(float widht , Vector2 position , Sprite sprite){
-       this.sprite = sprite;
-       this.position = position;
-       this.widht = widht;
+    public Platform(Sprite sprite, Vector2 position) {
+        this.sprite = sprite;
 
-       init();
-    }
-
-    private void init(){
-
+        //sprite.setSize(WIDHT, HEIGHT);
         sprite.setPosition(position.x,position.y);
-        sprite.setSize(widht,HEIGHT);
+        //super();
+
+    }
+
+    private void init() {
+
+
 
     }
 
 
-    public void update(){
-
+    public void update() {
 
 
     }
@@ -42,7 +42,5 @@ public class Platform {
         return sprite;
     }
 
-    public Vector2 getPosition() {
-        return position;
-    }
+
 }
