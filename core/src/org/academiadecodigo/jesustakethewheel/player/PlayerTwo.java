@@ -34,7 +34,7 @@ public class PlayerTwo {
 
         playerControllerTwo = new PlayerControllerTwo(this);
 
-        sprite = new Sprite(new Texture("whitemove2.png"));
+        sprite = new Sprite(new Texture("whitemove1resized.png"));
 
         sprite.setPosition(200, 200);
         atlas =  new TextureAtlas("playerTwo.atlas");
