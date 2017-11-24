@@ -45,7 +45,7 @@ public class GameWorld {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("PressStart2P.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 35;
-        parameter.color = Color.PINK;
+        parameter.color = Color.YELLOW;
         font = generator.generateFont(parameter);
         Texture entranceTexture = new Texture(Gdx.files.internal("entry.png"));
         entrance = new Sprite(entranceTexture);
@@ -81,7 +81,7 @@ public class GameWorld {
             }
 
 
-            while(platforms.size() < 10) {
+            while(platforms.size() < 50) {
                 platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
             }
         }
@@ -122,9 +122,7 @@ public class GameWorld {
 
         }
 
-        if (input.isKeyPressed(Input.Keys.ENTER)) {
-            stage = Stages.PLAY;
-        }
+
 
         if (platforms.size() < 10) {
             platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));

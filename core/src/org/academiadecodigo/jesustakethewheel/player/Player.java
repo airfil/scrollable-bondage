@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.graphics.g2d.Animation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,8 @@ public class Player {
     private Sprite sprite;
     private Body body;
     private PlayerController playerController;
+    private Animation<TextureRegion> fowardAnimation;
+    private TextureAtlas atlas;
     private World world;
     private Fixture playerPhysicsFixture;
 
@@ -56,8 +61,7 @@ public class Player {
     }
 
     public void jump() {
-
-        if(isPlayerJumping()) {
+        if (isPlayerJumping()) {
             return;
         }
 
@@ -75,7 +79,6 @@ public class Player {
     }
 
     public void moveRight() {
-
         body.applyForceToCenter(200f, 0, true);
     }
 
