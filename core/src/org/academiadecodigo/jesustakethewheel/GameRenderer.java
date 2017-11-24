@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by codecadet on 23/11/2017.
  */
@@ -67,8 +70,11 @@ public class GameRenderer {
             spriteBatch.end();
         }
 
-        gameWorld.getWorld().step(1 / 60f, 6, 2);
+        gameWorld.getWorld().step(1 / 45f, 6, 2);
     }
+
+
+
 
 
 }

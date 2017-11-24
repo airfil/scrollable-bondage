@@ -51,8 +51,9 @@ public class GameWorld {
         entrance = new Sprite(entranceTexture);
         entrance.setPosition(0, 0);
         background = new Background();
+
         rope = new Rope(playerOne, playerTwo);
-        world = new World(new Vector2(0f, -148f), true);
+        world = new World(new Vector2(0f, -80f), true);
         playerOne = new Player(world);
         playerTwo = new Player(world);
         platforms = new LinkedList<Platform>();
@@ -80,7 +81,7 @@ public class GameWorld {
             }
 
 
-            if (platforms.size() < 300) {
+            while(platforms.size() < 10) {
                 platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
             }
         }
@@ -97,7 +98,7 @@ public class GameWorld {
             while (listIterator.hasNext()) {
                 platform = listIterator.next();
                 platform.update();
-                if (platform.getSprite().getY() <= -200) {
+                if (platform.getSprite().getY() <= -20) {
                     world.destroyBody(platform.getBody());
                     listIterator.remove();
                     listIterator.add(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
@@ -125,8 +126,7 @@ public class GameWorld {
             stage = Stages.PLAY;
         }
 
-
-        if (platforms.size() < 300) {
+        if (platforms.size() < 10) {
             platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
         }
 
