@@ -2,6 +2,7 @@ package org.academiadecodigo.jesustakethewheel;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import org.academiadecodigo.jesustakethewheel.platform.FactoryPlat;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 import org.academiadecodigo.jesustakethewheel.player.Player;
 import org.academiadecodigo.jesustakethewheel.rope.Rope;
@@ -37,6 +38,11 @@ public class GameWorld {
 
 
     public void update() {
+        if(platforms.size() < 10){
+            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size()));
+            System.out.println(platforms.size() + " SIZE");
+        }
+
         playerOne.update();
     }
 
