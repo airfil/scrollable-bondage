@@ -47,7 +47,7 @@ public class Platform{
         fixtureDef.shape = shape;
         fixtureDef.density = 0.1f;
         fixtureDef.friction = 0.0f;
-        fixtureDef.restitution = 0.1f;
+        fixtureDef.restitution = 3f;
 
         body.createFixture(fixtureDef);
 

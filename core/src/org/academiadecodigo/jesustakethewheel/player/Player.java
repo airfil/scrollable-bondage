@@ -50,7 +50,7 @@ public class Player {
         fixtureDef.shape = shape;
         fixtureDef.density = 0.0f;
         fixtureDef.friction = 1.0f;
-        fixtureDef.restitution = 0.1f;
+        fixtureDef.restitution = 3f;
 
         playerPhysicsFixture = body.createFixture(fixtureDef);
     }

@@ -20,6 +20,7 @@ import org.academiadecodigo.jesustakethewheel.rope.Rope;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import static com.badlogic.gdx.Gdx.input;
@@ -39,7 +40,9 @@ public class GameWorld {
     private Sound song;
     private World world;
     private LinkedList<Platform> platforms;
+    private List<Coin> coinList;
     private boolean isSongPlaying;
+    private int score;
 
     public GameWorld() {
 
@@ -52,12 +55,14 @@ public class GameWorld {
         entrance = new Sprite(entranceTexture);
         entrance.setPosition(0, 0);
         background = new Background();
-        world = new World(new Vector2(0f, -98f), true);
+
+        world = new World(new Vector2(0f, -80f), true);
         playerOne = new Player(world);
         playerTwo = new PlayerTwo(world);
         platforms = new LinkedList<Platform>();
         stage = Stages.START;
         song = Gdx.audio.newSound(Gdx.files.internal("drake.wav"));
+        coinList = new LinkedList<>();
     }
 
     public enum Stages {
@@ -77,8 +82,8 @@ public class GameWorld {
             }
 
 
-            if (platforms.size() < 300) {
-                platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
+            while(platforms.size() < 10) {
+                platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world, coinList));
             }
         }
 
@@ -94,10 +99,10 @@ public class GameWorld {
             while (listIterator.hasNext()) {
                 platform = listIterator.next();
                 platform.update();
-                if (platform.getSprite().getY() <= -200) {
+                if (platform.getSprite().getY() <= -20) {
                     world.destroyBody(platform.getBody());
                     listIterator.remove();
-                    listIterator.add(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
+                    listIterator.add(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world, coinList));
                     platform = null;
 
                 }
@@ -117,15 +122,28 @@ public class GameWorld {
                 stage = Stages.END;
             }
 
+            ListIterator<Coin> coinListIterator = coinList.listIterator();
+
+            while (coinListIterator.hasNext()) {
+
+                Coin coin = coinListIterator.next();
+                coin.update();
+                if((Math.abs(playerOne.getSprite().getX() - coin.getSprite().getX()) < 20 && Math.abs(playerOne.getSprite().getY() - coin.getSprite().getY()) < 20) ||
+                        (Math.abs(playerTwo.getSprite().getX() - coin.getSprite().getX()) < 20 && Math.abs(playerTwo.getSprite().getY() - coin.getSprite().getY()) < 20)) {
+                    score++;
+                    coinListIterator.remove();
+                    System.out.println(score);
+                }
+            }
+
         }
 
         if (input.isKeyPressed(Input.Keys.ENTER)) {
             stage = Stages.PLAY;
         }
 
-
-        if (platforms.size() < 300) {
-            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world));
+        if (platforms.size() < 10) {
+            platforms.offer(FactoryPlat.platforms(platforms.peekLast(), platforms.size(), world, coinList));
         }
 
     }
@@ -161,5 +179,9 @@ public class GameWorld {
 
     public Stages getStages(){
         return stage;
+    }
+
+    public List<Coin> getCoinList() {
+        return coinList;
     }
 }

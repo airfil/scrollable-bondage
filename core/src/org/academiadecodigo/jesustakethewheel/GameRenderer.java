@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by codecadet on 23/11/2017.
  */
@@ -50,6 +53,13 @@ public class GameRenderer {
             spriteBatch.end();
         }
 
+        for (Coin coin : gameWorld.getCoinList()) {
+
+            spriteBatch.begin();
+            coin.getSprite().draw(spriteBatch);
+            spriteBatch.end();
+        }
+
         spriteBatch.begin();
         spriteBatch.draw(playerOneSprite, playerOneSprite.getX(), playerOneSprite.getY());
         spriteBatch.draw(playerTwoSprite, playerTwoSprite.getX(), playerTwoSprite.getY());
@@ -68,8 +78,11 @@ public class GameRenderer {
             spriteBatch.end();
         }
 
-        gameWorld.getWorld().step(1 / 60f, 6, 2);
+        gameWorld.getWorld().step(1 / 45f, 6, 2);
     }
+
+
+
 
 
 }
