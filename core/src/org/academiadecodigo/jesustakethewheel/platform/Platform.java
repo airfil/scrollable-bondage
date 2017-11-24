@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
  * Created by codecadet on 23/11/2017.
  */
 public class Platform{
+    private Sprite spriteWindow;
 
     //private final float HEIGHT = 30;
     //private final float WIDHT = 50;
@@ -21,8 +22,9 @@ public class Platform{
     public Platform(World world, float x, float y) {
         this.world = world;
         sprite = new Sprite(new Texture("platform.png"));
+        spriteWindow = new Sprite(new Texture("window.png"));
         sprite.setPosition(x, y);
-
+        spriteWindow.setPosition(x+20 ,y+20);
         System.out.println(sprite.getWidth());
 
         init();
@@ -34,7 +36,7 @@ public class Platform{
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(sprite.getX() + sprite.getWidth() / 2, sprite.getY() - sprite.getHeight() / 2);
+        bodyDef.position.set(sprite.getX() + sprite.getWidth() / 2, sprite.getY()) ;
 
         body = world.createBody(bodyDef);
 
@@ -54,6 +56,10 @@ public class Platform{
 
     public void update() {
 
+        sprite.setPosition(sprite.getX(), sprite.getY() -0.5f);
+        spriteWindow.setPosition(spriteWindow.getX(), spriteWindow.getY() -0.5f);
+        body.setTransform(sprite.getX() + sprite.getWidth() / 2, sprite.getY(), 0);
+
 
     }
 
@@ -62,4 +68,11 @@ public class Platform{
         return sprite;
     }
 
+    public Sprite getSpriteWindow() {
+        return spriteWindow;
+    }
+
+    public Body getBody() {
+        return body;
+    }
 }

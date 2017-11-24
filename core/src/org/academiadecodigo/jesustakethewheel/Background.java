@@ -9,10 +9,20 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Background {
 
-    private Sprite sprite;
+    private Sprite spriteBackground;
+
+
 
     public Background() {
         Texture background = new Texture(Gdx.files.internal("building_background.png"));
-        sprite = new Sprite(background);
+        spriteBackground = new Sprite(background);
+    }
+
+    public void update(){
+        spriteBackground.setPosition(spriteBackground.getX(), spriteBackground.getY() -0.5f);
+    }
+
+    public Sprite getSprite() {
+        return spriteBackground;
     }
 }
