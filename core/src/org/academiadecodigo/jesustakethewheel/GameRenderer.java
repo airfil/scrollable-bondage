@@ -27,6 +27,8 @@ public class GameRenderer {
 
     public void render(float delta) {
 
+
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -37,21 +39,28 @@ public class GameRenderer {
         Sprite playerTwoSprite = gameWorld.getPlayerTwo().getSprite();
 
         spriteBatch.begin();
-
-        spriteBatch.draw(playerOneSprite, playerOneSprite.getX(), playerOneSprite.getY());
-        spriteBatch.draw(playerTwoSprite, playerTwoSprite.getX(), playerTwoSprite.getY());
-
+        gameWorld.getBackground().getSprite().draw(spriteBatch);
+        gameWorld.getEntrance().draw(spriteBatch);
         spriteBatch.end();
 
         for (Platform platform : gameWorld.getPlatforms()) {
             spriteBatch.begin();
             platform.getSprite().draw(spriteBatch);
+            platform.getSpriteWindow().draw(spriteBatch);
             spriteBatch.end();
         }
 
+        spriteBatch.begin();
+        spriteBatch.draw(playerOneSprite, playerOneSprite.getX(), playerOneSprite.getY());
+        spriteBatch.draw(playerTwoSprite, playerTwoSprite.getX(), playerTwoSprite.getY());
+        spriteBatch.end();
 
 
-        gameWorld.getWorld().step(1 / 60f, 6, 2);
+        spriteBatch.begin();
+        gameWorld.getFont().draw(spriteBatch, "Press Start!", 28, 400);
+        spriteBatch.end();
+
+        gameWorld.getWorld().step(1 / 60f, 6, 6);
     }
 
 
