@@ -1,6 +1,5 @@
 package org.academiadecodigo.jesustakethewheel;
 
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
@@ -10,14 +9,12 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import javafx.stage.Stage;
 import org.academiadecodigo.jesustakethewheel.platform.FactoryPlat;
 import org.academiadecodigo.jesustakethewheel.platform.Platform;
 import org.academiadecodigo.jesustakethewheel.player.Player;
 import org.academiadecodigo.jesustakethewheel.player.PlayerTwo;
 import org.academiadecodigo.jesustakethewheel.rope.Rope;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -62,7 +59,7 @@ public class GameWorld {
         platforms = new LinkedList<Platform>();
         stage = Stages.START;
         song = Gdx.audio.newSound(Gdx.files.internal("drake.wav"));
-        coinList = new LinkedList<>();
+        coinList = new LinkedList<Coin>();
     }
 
 
